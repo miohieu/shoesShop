@@ -1,20 +1,31 @@
+import { useDispatch, useSelector } from "react-redux"
+import { closeModal } from "../features/product/productDetails"
+import "./Modal.css"
 
 const Modal = () => {
-  return (
-      <div className="product-modal" style={
-          {
-              width: 200,
-                  height: 200,
-                  display: "flex",
-                  position: "fixed",
-                  justifyContent: "center",
-                  backgroundColor: "rgba(0, 0, 0, 0.5)",
-                  zIndex: 9999
-          }
-      }>
-      Modal body
-      </div>
-  )
+
+    const dispatch = useDispatch()
+    const item = useSelector(state => state.product.item)
+
+    return (
+        <div className="text-white product-modal modal-container" >
+
+        <h1>{item.name}</h1>
+        <img src={item.image} alt="addidas" className="modal-image"/>
+                <span>
+                    <button className="btn btn-danger close-button" 
+        onClick={() => {
+            dispatch(closeModal())
+        }}> &times;
+
+                    </button>
+                </span>
+        <div>
+        {item.description}
+        </div>
+        </div>
+
+    )
 }
 
 export default Modal

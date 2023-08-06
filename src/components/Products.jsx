@@ -1,4 +1,4 @@
-import { toggleModal } from "../features/product/productDetails"
+import { modalShow, toggleModal } from "../features/product/productDetails"
 import { add } from "../features/cart/cartSlice"
 import data from "../utils/data.json"
 import Modal from "./Modal"
@@ -16,11 +16,16 @@ const Products = () => {
             dispatch(add(shoe)) 
     }
 
+    const handleModal = (id) => {
+        dispatch(modalShow({id, array: data}))
+        dispatch(toggleModal())
+    }
+
     return (
         <div className="product__container">
             <div className="product__cards">
 
-        {isModal && <Modal />}
+        {isModal && <Modal/>}
         <div className="row">
         {
             data.map(product => (
@@ -43,7 +48,9 @@ const Products = () => {
                 }
                 }>Add to cart</button>
                 <button className="btn btn-primary"
-                onClick={() => { dispatch(toggleModal()) }}>
+                onClick={() => {
+                    handleModal(product.id)
+                }}>
                 Product details</button>
                 </div>
                 </div>

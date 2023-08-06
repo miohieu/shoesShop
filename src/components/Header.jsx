@@ -1,10 +1,13 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { remove } from "../features/cart/cartSlice"
 
 const Header = () => {
+    const dispatch = useDispatch()
+    const handleRemove = (id) => {
+        dispatch(remove(id))
+    }
 
     const cartItems = useSelector(state => state.cart.items)
-
-    console.log(cartItems)
 
     return (
         <div>
@@ -21,6 +24,7 @@ const Header = () => {
         <div className="col">San pham </div>
         <div className="col"> So luong</div>
         <div className="col"> Tong tien</div>
+        <div className="col"></div>
         </div>
         {cartItems.map( item => (
             <div className="row" key={item.id}>
@@ -33,7 +37,12 @@ const Header = () => {
 
             </div>
             <div className="col">{item.itemQuantity}</div>
-            <div className="col">{item.price}</div>
+            <div className="col">{item.price*item.itemQuantity}</div>
+            <div className="col">
+            <button className="btn btn-danger" onClick={() => {
+                handleRemove(item.id)
+            }}>Remove</button>
+            </div>
             </div>
 
         )

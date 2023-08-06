@@ -18,12 +18,20 @@ export const cartSlice = createSlice({
               const item = items.find(e => e.id === id)
               item.itemQuantity += 1
           }
+      },
+      remove: (state, action) => {
+          const id = action.payload
+          const items = state.items
+         console.log("id", id) 
+          const idx = items.findIndex(e => e.id === id)
+         console.log("idx", idx) 
+          items.splice(idx, 1);
       }
   },
 })
 
 
-export const {add} = cartSlice.actions
+export const {add, remove} = cartSlice.actions
 
 export default cartSlice.reducer
 
