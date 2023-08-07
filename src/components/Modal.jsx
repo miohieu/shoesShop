@@ -8,7 +8,8 @@ const Modal = () => {
     const item = useSelector(state => state.product.item)
 
     return (
-        <div className="text-white product-modal modal-container" >
+        <div className="text-dark product-modal modal-container" >
+        <div className="modal-detail">
 
         <h1>{item.name}</h1>
         <img src={item.image} alt="addidas" className="modal-image"/>
@@ -20,8 +21,10 @@ const Modal = () => {
 
                     </button>
                 </span>
+        <span className="modal-price"> $ {item.price}</span>
         <div>
         {item.description}
+        </div>
         </div>
         </div>
 

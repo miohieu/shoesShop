@@ -14,7 +14,7 @@
 }
 
 /* Modal content */
-.modal {
+.modal-detail {
   background-color: white;
   border-radius: 8px;
   padding: 20px;
@@ -22,6 +22,10 @@
 }
 .modal-image {
     width:100px;
+}
+.modal-title {
+    font-size: 2rem;
+    font-weight: 900;
 }
 
 /* Close button */
@@ -31,7 +35,7 @@
   right: 10px;
 }
 
-body.modal-open > *:not(.modal-container) {
+body.modal-detail-open > *:not(.modal-container) {
   filter: blur(2px); 
 }
 
